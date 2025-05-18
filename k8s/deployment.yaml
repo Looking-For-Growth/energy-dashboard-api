@@ -74,7 +74,7 @@ spec:
             path: /health
         resources:
           requests:
-            cpu: 250m
+            cpu: 50m
             memory: 128Mi
           limits:
             # CPython doesn't benefit from more than 1 CPU
