@@ -13,15 +13,15 @@ spec:
         app: backend
     spec:
       topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: zone
-        whenUnsatisfiable: ScheduleAnyway
+      - maxSkew: 2
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:
             app: backend
       - maxSkew: 1
-        topologyKey: node
-        whenUnsatisfiable: ScheduleAnyway
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:
             app: backend
