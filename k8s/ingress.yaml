@@ -2,23 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: energy-dashboard
-  name: energy-dashboard
+  name: lookingforgrowth-energy
   annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /health
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/success-codes: '200'
-    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:eu-west-2:886436934500:regional/webacl/all/a4d92465-8b75-4997-9ca8-57cfd3d92922
-    kubernetes.io/ingress.class: alb
+    cert-manager.io/cluster-issuer: letsencrypt-lfg
 spec:
+  ingressClassName: nginx-lfg
   defaultBackend:
     service:
       name: frontend
       port:
         number: 80
   rules:
-  - http:
+  - host: energy.lookingforgrowth.uk
+    http:
       paths:
       - pathType: Prefix
         path: /api/
@@ -27,14 +23,18 @@ spec:
             name: backend
             port:
               number: 80
+  - host: energy.lfgdata.uk
+    http:
+      paths:
       - pathType: Prefix
-        path: /.well-known/acme-challenge/
+        path: /api/
         backend:
           service:
-            name: acme-solver
+            name: backend
             port:
-              name: http
+              number: 80
   tls:
   - hosts:
     - energy.lookingforgrowth.uk
     - energy.lfgdata.uk
+    secretName: lookingforgrowth-energy-tls
