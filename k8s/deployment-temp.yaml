@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: energy-dashboard
+  name: ingress-migration
+spec:
+  selector:
+    matchLabels:
+      app: ingress-migration
+  template:
+    metadata:
+      labels:
+        app: ingress-migration
+    spec:
+      containers:
+      - name: forward
+        image: docker.io/alpine/socat
+        imagePullPolicy: IfNotPresent
+        args:
+        - tcp-listen:80,fork,reuseaddr
+        - tcp-connect:ingress-nginx-lfg-controller.ingress-nginx-lfg:80
+        ports:
+        - name: http
+          containerPort: 80
+        resources:
+          requests:
+            cpu: 50m
+            memory: 16Mi
+          limits:
+            cpu: 1000m
+            memory: 16Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true

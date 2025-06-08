@@ -27,6 +27,13 @@ spec:
             name: backend
             port:
               number: 80
+      - pathType: Prefix
+        path: /.well-known/acme-challenge/
+        backend:
+          service:
+            name: acme-solver
+            port:
+              name: http
   tls:
   - hosts:
     - energy.lookingforgrowth.uk
