@@ -4,7 +4,7 @@ metadata:
   namespace: energy-dashboard
   name: lookingforgrowth-energy
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-lfg-staging
+    cert-manager.io/cluster-issuer: letsencrypt-lfg
 spec:
   ingressClassName: nginx-lfg
   defaultBackend:
