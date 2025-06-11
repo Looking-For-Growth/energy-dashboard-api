@@ -19,3 +19,6 @@ spec:
     limits:
       cpu: 2000m
       memory: 256Mi
+  postgresql:
+    parameters:
+      shared_buffers: "32MB"
