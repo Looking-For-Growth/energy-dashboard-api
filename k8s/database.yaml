@@ -12,3 +12,10 @@ spec:
     topologyKey: topology.kubernetes.io/zone
   storage:
     size: 16Gi
+  resources:
+    requests:
+      cpu: 20m
+      memory: 256Mi
+    limits:
+      cpu: 2000m
+      memory: 256Mi
