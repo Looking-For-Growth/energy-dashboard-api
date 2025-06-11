@@ -4,6 +4,11 @@ metadata:
   namespace: energy-dashboard
   name: database
 spec:
-  instances: 1
+  instances: 2
+  replicationSlots:
+    highAvailability:
+      enabled: true
+  affinity:
+    topologyKey: topology.kubernetes.io/zone
   storage:
     size: 16Gi
