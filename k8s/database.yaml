@@ -15,10 +15,10 @@ spec:
   resources:
     requests:
       cpu: 20m
-      memory: 256Mi
+      memory: 128Mi
     limits:
       cpu: 2000m
-      memory: 256Mi
+      memory: 128Mi
   postgresql:
     parameters:
       shared_buffers: "32MB"
