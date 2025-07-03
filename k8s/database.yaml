@@ -4,7 +4,7 @@ metadata:
   namespace: energy-dashboard
   name: database
 spec:
-  instances: 2
+  instances: 1
   replicationSlots:
     highAvailability:
       enabled: true
