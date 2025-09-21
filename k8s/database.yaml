@@ -10,6 +10,11 @@ spec:
       enabled: true
   affinity:
     topologyKey: topology.kubernetes.io/zone
+  backup:
+    volumeSnapshot:
+       online: true
+       onlineConfiguration:
+         immediateCheckpoint: true
   storage:
     size: 16Gi
   resources:

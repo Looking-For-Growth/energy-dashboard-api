@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  namespace: energy-dashboard
+  name: database
+spec:
+  cluster:
+    name: database
+  method: volumeSnapshot
+  schedule: "0 0 0 * * *"
+  # In case someone deletes something important
+  backupOwnerReference: none
+  immediate: true
