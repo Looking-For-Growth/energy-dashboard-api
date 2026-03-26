@@ -18,5 +18,6 @@ else:
     CORS_ORIGINS = [
         "https://energy.lookingforgrowth.uk",
         "https://energy.lfgdata.uk",
+        "https://dashboards.lookingforgrowth.uk",
         "https://delays.lookingforgrowth.uk",
     ]
