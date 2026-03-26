@@ -38,36 +38,6 @@ spec:
               # Manually randomly generated to avoid leaking it.
               name: backend
               key: secret
-        - name: BREVO_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: brevo-api-key
-              key: key
-        - name: APP_DATABASE_HOST
-          valueFrom:
-            secretKeyRef:
-              name: database-app
-              key: host
-        - name: APP_DATABASE_PORT
-          valueFrom:
-            secretKeyRef:
-              name: database-app
-              key: port
-        - name: APP_DATABASE_NAME
-          valueFrom:
-            secretKeyRef:
-              name: database-app
-              key: dbname
-        - name: APP_DATABASE_USER
-          valueFrom:
-            secretKeyRef:
-              name: database-app
-              key: user
-        - name: APP_DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database-app
-              key: password
         readinessProbe:
           httpGet:
             port: 80

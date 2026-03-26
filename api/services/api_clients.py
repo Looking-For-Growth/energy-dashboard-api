@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.conf import settings
 import logging
 import requests
 from typing import Dict
@@ -10,7 +9,8 @@ from tenacity import (
     retry_if_exception_type,
 )
 
-from apps.core.utils.base_client import (
+import config
+from services.base_client import (
     BaseService,
     ExternalAPIError,
     RateLimitError,
@@ -195,7 +195,7 @@ class BMRSService(BaseService):
     class BMRSRateLimitError(RateLimitError):
         """BMRS-specific rate limiting error"""
 
-    def __init__(self, api_key: str = settings.BMRS_API_KEY):
+    def __init__(self, api_key: str = config.BMRS_API_KEY):
         super().__init__(
             base_url="https://data.elexon.co.uk/bmrs/api/v1", logger_name="BMRS Service"
         )
